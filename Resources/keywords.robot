@@ -1,11 +1,11 @@
 *** Settings ***
-Library                         Seleniumlibrary
+Library                         SeleniumLibrary
 
 
 *** Keywords ***
 Begin Web Test
     Open Browser                about:blank  ${BROWSER}
-
+    Maximize Browser Window
 Go to Web Page
     Load Page
     Verify Page Loaded
@@ -24,14 +24,14 @@ Search for Product
 
 Enter Search Term
     [Arguments]                 ${search_term}
-    Input Text                  id:twotabsearchtextbox  ${Search_term}
+    Input Text                  id:twotabsearchtextbox  ${search_term}
 Submit Search
     Click Button                xpath://*[@id="nav-search"]/form/div[2]/div/input
 
 Verify Search Completed
     [Arguments]                 ${search_term}    ${search_result}
     ${result_text} =            Set Variable      results for "${search_term}"
-    Should Be Equal             ${search_text}  ${search_result}
+    Should Be Equal             ${result_text}    ${search_result}
 
 End Web Test
     Close Browser
